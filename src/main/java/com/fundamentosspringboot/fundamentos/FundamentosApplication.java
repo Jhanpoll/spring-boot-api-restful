@@ -5,6 +5,8 @@ import com.fundamentosspringboot.fundamentos.bean.MyBeanWithDependeny;
 import com.fundamentosspringboot.fundamentos.bean.MyBeanWithProperties;
 import com.fundamentosspringboot.fundamentos.component.Component;
 import com.fundamentosspringboot.fundamentos.pojo.UserPojo;
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class FundamentosApplication implements CommandLineRunner {
-
+	// log es una clase de la libreria apache tom
+	Log LOGGER = LogFactory.getLog(FundamentosApplication.class);
 	private Component component;
 	private MyBean myBean;
 	private MyBeanWithDependeny myBeanWithDependeny;
@@ -38,5 +41,14 @@ public class FundamentosApplication implements CommandLineRunner {
 		myBeanWithDependeny.printWithDependeny();
 		System.out.println(myBeanWithProperties.function());
 		System.out.println(userPojo.getEmail()+" - "+userPojo.getPassword());
+		try{
+			//error
+			int value= 10/0;
+			LOGGER.info("mi valor es: "+value);
+		}catch (Exception e){
+			LOGGER.error("esto es un error por dividir entre cero"+ e.getMessage());
+		}
+
+
 	}
 }
