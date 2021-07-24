@@ -1,6 +1,6 @@
 package com.fundamentosspringboot.fundamentos.entity;
 
-import org.apache.catalina.User;
+
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import javax.persistence.*;
@@ -14,6 +14,7 @@ public class Post {
     private Long id;
     @Column(name = "description",length = 255)
     private String description;
+
     @ManyToOne
     private User user;
 
